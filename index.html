@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic CV of Dr. Kai Zhou</title>
     
-        <!-- 引入 MathJax 脚本，让网页完美支持 LaTeX/TeX 数学公式 -->
+    <!-- 核心修复：引入稳定、配置完善的 MathJax 脚本让网页完美支持 LaTeX/TeX 数学公式 -->
     <script>
-        MathJax = {
+        window.MathJax = {
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']], // 行内公式的触发符号：用 $ 符号包裹
-                displayMath: [['$$', '$$'], ['\\[', '\\]']] // 独立行公式的触发符号：用 $$ 符号包裹
+                displayMath: [['$$', '$$'], ['\\[', '\\]']], // 独立行公式的触发符号：用 $$ 符号包裹
+                processEscapes: true
             }
         };
     </script>
-    <script id="MathJax-script" async src="https://jsdelivr.net"></script>
+    <script id="MathJax-script" async src="https://bootcdn.net"></script>
 
     <style>
         /* 基础样式：纯粹靠左对齐，优雅的学术字体 */
@@ -208,7 +209,6 @@
         <div class="cv-date">DDMMYY</div>
         <div class="cv-content">To be filled</div>
     </div>
-    
 
 </body>
 </html>
