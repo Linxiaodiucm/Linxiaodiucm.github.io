@@ -27,7 +27,7 @@
             font-weight: 600;
         }
 
-        /* 强调用色：论文发表和标题 */
+        /* 强调用色 */
         h3 {
             font-size: 1.1rem;
             margin: 0 0 5px 0;
@@ -49,7 +49,7 @@
             margin-bottom: 6px;
         }
 
-        /* 时间轴排版核心代码：左侧时间固定宽度，右侧内容自适应 */
+        /* 时间轴排版：左侧时间固定宽度调宽，右侧内容自适应 */
         .cv-item {
             display: flex;
             align-items: flex-start;
@@ -57,8 +57,8 @@
         }
 
         .cv-date {
-            width: 200px; /* 固定左侧时间轴宽度 */
-            min-width: 200px;
+            width: 180px; /* 已经加宽到 180 像素，防止长日期换行 */
+            min-width: 180px;
             color: #57606a; /* 优雅的深灰时间字体 */
             font-size: 0.9rem;
             padding-top: 2px;
@@ -74,22 +74,32 @@
             margin-bottom: 4px;
         }
 
-        /* 论文列表特殊样式 */
+        /* 论文列表：清除默认编号，开启自定义自动计数器 */
         .publication-list {
             list-style-type: none;
             padding-left: 0;
+            counter-reset: pub-counter; /* 创建一个计数器 */
         }
 
+        /* 每一篇论文的样式 */
         .publication-list li {
             position: relative;
-            padding-left: 25px;
+            padding-left: 35px; /* 左侧留出 35 像素给序号 */
             margin-bottom: 12px;
+            text-align: left;
         }
 
-        .publication-list li .pub-number {
+        /* 利用 CSS 自动在前面生成带有 [中括号] 的数字 */
+        .publication-list li::before {
+            counter-increment: pub-counter; /* 计数器自动加 1 */
+            content: "[" counter(pub-counter) "]"; /* 让内容显示为 [数字] */
             position: absolute;
             left: 0;
+            top: 0;
             color: #000000;
+            font-weight: normal;
+            width: 25px;
+            text-align: right; /* 确保序号右对齐，整齐好看 */
         }
 
         /* 链接样式 */
@@ -103,12 +113,13 @@
     </style>
 </head>
 <body>
-        <!-- 网站总标题 -->
+
+    <!-- 网站总标题 -->
     <h1 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-weight: 700; font-size: 2.2rem; color: #000000; margin-top: 10px; margin-bottom: 30px;">Academic CV of Dr. Kai Zhou</h1>
 
     <!-- Positions 版块 -->
     <h2>Positions</h2>
-
+    
     <div class="cv-item">
         <div class="cv-date">Sep. 2025 – Ongoing</div>
         <div class="cv-content">
@@ -116,7 +127,7 @@
             <div class="cv-meta">Nanjing Normal University</div>
         </div>
     </div>
-    
+
     <div class="cv-item">
         <div class="cv-date">Aug. 2024 – Aug. 2025</div>
         <div class="cv-content">
@@ -147,7 +158,32 @@
             <p><strong>Ph.D. Thesis</strong><br>
             Title: The well-posedness and hydrodynamic limits of quantum Boltzmann equation with Fermi-Dirac statistics<br>
             Advisor: Prof. Ning Jiang<br>
+            Defense date: May 28, 2022<br>
             Research area: Mathematical Analysis (Partial Differential Equations)</p>
+        </div>
+    </div>
+
+
+    <!-- Education 版块 -->
+    <h2>Education</h2>
+    
+    <div class="cv-item">
+        <div class="cv-date">Sep. 2015 – Jun. 2018</div>
+        <div class="cv-content">
+            <h3>Master in Mathematics</h3>
+            <div class="cv-meta">The School of Mathematics and Statistics, Wuhan University</div>
+            <p><strong>Master Thesis</strong><br>
+            Title: Hyperbolic-Parabolic Type Chemotaxis Systems with Proliferation in ℝ<sup>N</sup><br>
+            Advisor: Prof. Shaohua Wu<br>
+            Research area: Mathematical Analysis (Partial Differential Equations)</p>
+        </div>
+    </div>
+
+    <div class="cv-item">
+        <div class="cv-date">Sep. 2011 – Jun. 2015</div>
+        <div class="cv-content">
+            <h3>Bachelor in Mathematics</h3>
+            <div class="cv-meta">The School of Information and Mathematics, Yangtze University</div>
         </div>
     </div>
 
@@ -156,7 +192,7 @@
     <h2>Research Works and Recent Achievements</h2>
     <p>My research interests are</p>
     <ul>
-        <li>The mathematical theory of kinetic equations, particularly of quantum Boltzmann equations;</li>
+        <li>The mathematical theory of kinetic equations, particularly on quantum Boltzmann equations;</li>
         <li>The hydrodynamic limits of kinetic equations;</li>
         <li>The mathematical theory of partial differential equations arising in fluid mechanics.</li>
     </ul>
