@@ -5,21 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic CV of Dr. Kai Zhou</title>
     <style>
-        /* 基础样式：纯粹靠左对齐，优雅的学术字体 */
+        /* 全局排版 */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: #24292f;
             line-height: 1.5;
-            max-width: 1100px;
-            margin: 40px auto 40px 40px; /* 彻底靠左并留出舒适边距 */
+            max-width: 1200px; /* 拓宽页面以容纳双栏 */
+            margin: 40px auto 40px 40px; 
             padding: 0 20px;
             background-color: #ffffff;
         }
 
+        .site-title {
+            font-size: 2.2rem;
+            color: #000000;
+            font-weight: 700;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 15px;
+        }
+
+        /* 核心：弹性左右双栏大布局 */
+        .layout-container {
+            display: flex;
+            gap: 50px; /* 左右两栏的黄金间距 */
+            align-items: flex-start;
+        }
+
+        /* 左侧主履历区域占满剩余空间 */
+        .left-cv-content {
+            flex: 1; 
+            min-width: 0;
+        }
+
+        /* 右侧实时消息卡片 */
+        .right-news-sidebar {
+            width: 320px;
+            min-width: 320px;
+            background-color: #f6f8fa; /* 优雅的轻灰色底框 */
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 20px;
+            box-sizing: border-box;
+            position: sticky;
+            top: 20px; /* 滚动时平滑吸顶 */
+        }
+
         /* 大标题版块：蓝绿色底线 */
-        h2 {
+        .left-cv-content h2 {
             font-size: 1.5rem;
-            color: #0b5394; /* 沉稳的学术蓝 */
+            color: #0b5394; 
             border-bottom: 4px solid #0b5394;
             padding-bottom: 5px;
             margin-top: 35px;
@@ -27,95 +63,59 @@
             font-weight: 600;
         }
 
-        /* 强调用色 */
-        h3 {
-            font-size: 1.1rem;
-            margin: 0 0 5px 0;
-            color: #000000;
-            font-weight: 600;
+        .left-cv-content h2:first-of-type {
+            margin-top: 0;
         }
 
-        /* 列表与文字间距微调 */
-        p, ul {
-            margin: 0 0 10px 0;
-            font-size: 0.95rem;
+        .right-news-sidebar h2 {
+            font-size: 1.25rem;
+            color: #0b5394;
+            border-bottom: 2px solid #0b5394;
+            padding-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
 
-        ul {
-            padding-left: 20px;
-        }
+        h3 { font-size: 1.1rem; margin: 0 0 5px 0; color: #000000; font-weight: 600; }
+        p, ul { margin: 0 0 10px 0; font-size: 0.95rem; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
 
-        li {
-            margin-bottom: 6px;
-        }
+        /* 时间轴排版 */
+        .cv-item { display: flex; align-items: flex-start; margin-bottom: 18px; }
+        .cv-date { width: 180px; min-width: 180px; color: #57606a; font-size: 0.9rem; padding-top: 2px; }
+        .cv-content { flex-grow: 1; }
+        .cv-meta { color: #57606a; font-size: 0.9rem; margin-bottom: 4px; }
 
-        /* 时间轴排版：左侧时间固定宽度调宽，右侧内容自适应 */
-        .cv-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 18px;
-        }
-
-        .cv-date {
-            width: 180px; /* 已经加宽到 180 像素，防止长日期换行 */
-            min-width: 180px;
-            color: #57606a; /* 优雅的深灰时间字体 */
-            font-size: 0.9rem;
-            padding-top: 2px;
-        }
-
-        .cv-content {
-            flex-grow: 1;
-        }
-
-        .cv-meta {
-            color: #57606a;
-            font-size: 0.9rem;
-            margin-bottom: 4px;
-        }
-
-        /* 论文列表：清除默认编号，开启自定义自动计数器 */
-        .publication-list {
-            list-style-type: none;
-            padding-left: 0;
-            counter-reset: pub-counter; /* 创建一个计数器 */
-        }
-
-        /* 每一篇论文的样式 */
-        .publication-list li {
-            position: relative;
-            padding-left: 35px; /* 左侧留出 35 像素给序号 */
-            margin-bottom: 12px;
-            text-align: left;
-        }
-
-        /* 利用 CSS 自动在前面生成带有 [中括号] 的数字 */
+        /* 论文列表自动中括号计数器 */
+        .publication-list { list-style-type: none; padding-left: 0; counter-reset: pub-counter; }
+        .publication-list li { position: relative; padding-left: 35px; margin-bottom: 12px; text-align: left; }
         .publication-list li::before {
-            counter-increment: pub-counter; /* 计数器自动加 1 */
-            content: "[" counter(pub-counter) "]"; /* 让内容显示为 [数字] */
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #000000;
-            font-weight: normal;
-            width: 25px;
-            text-align: right; /* 确保序号右对齐，整齐好看 */
+            counter-increment: pub-counter; 
+            content: "[" counter(pub-counter) "]"; 
+            position: absolute; left: 0; top: 0; color: #000000; width: 25px; text-align: right; 
         }
 
-        /* 链接样式 */
-        a {
-            color: #0969da;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+        /* 动态条目样式 */
+        .news-item { margin-bottom: 15px; font-size: 0.9rem; border-bottom: 1px dashed #d0d7de; padding-bottom: 10px; }
+        .news-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        .news-date { font-weight: bold; color: #57606a; display: block; margin-bottom: 3px; }
+
+        @media (max-width: 768px) {
+            .layout-container { flex-direction: column; }
+            .right-news-sidebar { width: 100%; min-width: 100%; position: static; margin-bottom: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 网站总标题 -->
-    <h1 style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-weight: 700; font-size: 2.2rem; color: #000000; margin-top: 10px; margin-bottom: 30px;">Academic CV of Dr. Kai Zhou</h1>
+    <h1 class="site-title">Academic CV of Dr. Kai Zhou</h1>
+
+    <!-- 开启双栏容器 -->
+    <div class="layout-container">
+        
+        <!-- 左侧履历核心区开始 -->
+        <div class="left-cv-content">
 
     <!-- Positions 版块 -->
     <h2>Positions</h2>
@@ -199,38 +199,41 @@
     </ol>
 
 
-    <!-- Experiences 版块 -->
-    <h2>Experiences</h2>
-    
-    <div class="cv-item">
-        <div class="cv-date">DDMMYY</div>
-        <div class="cv-content">To be filled</div>
-    </div>
+            <!-- 完美的 Experiences 板块 -->
+            <h2>Experiences</h2>
+            <div class="cv-item">
+                <div class="cv-date">DDMMYY</div>
+                <div class="cv-content">To be filled</div>
+            </div>
 
-    <div class="right-news-sidebar">
+        </div> <!-- 左侧履历核心区结束 -->
+
+        <!-- ================= 右侧实时消息独立卡片 ================= -->
+        <div class="right-news-sidebar">
             <h2>Recent News</h2>
+            
             <div class="news-item">
                 <span class="news-date">Sep. 2025</span>
                 I have officially joined Nanjing Normal University as a Lecturer.
             </div>
+
             <div class="news-item">
                 <span class="news-date">Aug. 2025</span>
                 Our new paper about the Homoenergetic Boltzmann Equation has been uploaded as a preprint.
             </div>
+
             <div class="news-item">
                 <span class="news-date">Jan. 2026</span>
                 Our joint paper has been accepted by <em>J. Differential Equations</em>.
             </div>
+
             <div class="news-item">
                 <span class="news-date">Dec. 2024</span>
                 Gave an invited talk at Hunan University and Xiangtan University.
             </div>
-        </div> <!-- 右侧侧边栏结束标签 -->
+        </div> <!-- 右侧栏结束 -->
 
-    </div> <!-- 大容器结束标签 -->
-
-</body>
-</html>
+    </div> <!-- 双栏大容器结束 -->
 
 </body>
 </html>
