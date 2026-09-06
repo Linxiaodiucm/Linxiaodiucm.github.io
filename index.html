@@ -1,67 +1,213 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>林小丢的个人主页</title>
+    <title>Academic CV</title>
     <style>
-        /* 控制整体页面完全靠左，并限制最大宽度方便大屏阅读 */
+        /* 基础样式：纯粹靠左对齐，优雅的学术字体 */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: #24292f;
-            max-width: 800px;
-            margin: 40px auto 40px 40px; /* 这里的最后一个 40px 确保了左边留有舒适的空白，整体靠左 */
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 40px auto 40px 40px; /* 彻底靠左并留出舒适边距 */
             padding: 0 20px;
+            background-color: #ffffff;
         }
-        h1 { border-bottom: 1px solid #d0d7de; padding-bottom: 0.3em; }
-        h3 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; }
-        hr { height: 0.25em; padding: 0; margin: 24px 0; background-color: #sub; border: 0; }
-        ul { padding-left: 2em; }
-        li { margin-top: 0.25em; }
+
+        /* 大标题版块：蓝绿色底线 */
+        h2 {
+            font-size: 1.5rem;
+            color: #0b5394; /* 沉稳的学术蓝 */
+            border-bottom: 2px solid #0b5394;
+            padding-bottom: 5px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* 强调用色：论文发表和标题 */
+        h3 {
+            font-size: 1.1rem;
+            margin: 0 0 5px 0;
+            color: #000000;
+            font-weight: 600;
+        }
+
+        /* 列表与文字间距微调 */
+        p, ul {
+            margin: 0 0 10px 0;
+            font-size: 0.95rem;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* 时间轴排版核心代码：左侧时间固定宽度，右侧内容自适应 */
+        .cv-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .cv-date {
+            width: 140px; /* 固定左侧时间轴宽度 */
+            min-width: 140px;
+            color: #57606a; /* 优雅的深灰时间字体 */
+            font-size: 0.9rem;
+            padding-top: 2px;
+        }
+
+        .cv-content {
+            flex-grow: 1;
+        }
+
+        .cv-meta {
+            color: #57606a;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        /* 论文列表特殊样式 */
+        .publication-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .publication-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+        }
+
+        .publication-list li .pub-number {
+            position: absolute;
+            left: 0;
+            color: #000000;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #0969da;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Kai Zhou</h1>
-    <p>🧑 个人简介：这里写一两句最能展示您个人特色或专业方向的话。</p>
+    <!-- Positions 版块 -->
+    <h2>Positions</h2>
+    
+    <div class="cv-item">
+        <div class="cv-date">Aug. 2024 – Ongoing</div>
+        <div class="cv-content">
+            <h3>Research Associate</h3>
+            <div class="cv-meta">Department of Applied Mathematics, The Hong Kong Polytechnic University</div>
+            <div class="cv-meta">Postdoctoral mentor: Prof. Tong Yang</div>
+        </div>
+    </div>
 
-    <hr>
+    <div class="cv-item">
+        <div class="cv-date">Aug. 2022 – Aug. 2024</div>
+        <div class="cv-content">
+            <h3>Postdoctoral Fellow</h3>
+            <div class="cv-meta">Department of Mathematics, The Chinese University of Hong Kong</div>
+            <div class="cv-meta">Postdoctoral mentor: Prof. Chenyun Luo</div>
+        </div>
+    </div>
 
-    <h3>💼 工作与项目经历</h3>
+
+    <!-- Formation 版块 -->
+    <h2>Formation</h2>
+    
+    <div class="cv-item">
+        <div class="cv-date">Sep. 2018 – Jun. 2022</div>
+        <div class="cv-content">
+            <h3>Ph.D. in Mathematics</h3>
+            <div class="cv-meta">The School of Mathematics and Statistics, Wuhan University</div>
+            <p><strong>Ph.D. Thesis</strong><br>
+            Title: The well-posedness and hydrodynamic limits of quantum Boltzmann equation with Fermi-Dirac statistics<br>
+            Advisor: Prof. Ning Jiang<br>
+            Defense date: May 28, 2022<br>
+            Research area: Mathematical Analysis (Partial Differential Equations)</p>
+        </div>
+    </div>
+
+
+    <!-- Education 版块 -->
+    <h2>Education</h2>
+    
+    <div class="cv-item">
+        <div class="cv-date">Sep. 2015 – Jun. 2018</div>
+        <div class="cv-content">
+            <h3>Master in Mathematics</h3>
+            <div class="cv-meta">The School of Mathematics and Statistics, Wuhan University</div>
+            <p><strong>Master Thesis</strong><br>
+            Title: Hyperbolic-Parabolic Type Chemotaxis Systems with Proliferation in $\mathbb{R}^N$<br>
+            Advisor: Prof. Shaohua Wu<br>
+            Research area: Mathematical Analysis (Partial Differential Equations)</p>
+        </div>
+    </div>
+
+    <div class="cv-item">
+        <div class="cv-date">Sep. 2011 – Jun. 2015</div>
+        <div class="cv-content">
+            <h3>Bachelor in Mathematics</h3>
+            <div class="cv-meta">The School of Information and Mathematics, Yangtze University</div>
+        </div>
+    </div>
+
+
+    <!-- Research Works 版块 -->
+    <h2>Research Works and Recent Achievements</h2>
+    <p>My research are focusing on</p>
     <ul>
-        <li><strong>某某公司 / 团队</strong> | 担任职位 (2024 - 至今)
-            <ul>
-                <li>负责了什么内容，完成了什么目标。</li>
-            </ul>
-        </li>
-        <li><strong>独立项目 / 个人作品</strong> | 开发者 / 设计者 (2023 - 2024)
-            <ul>
-                <li>描述一下你最骄傲的个人成果或作品。</li>
-            </ul>
-        </li>
+        <li>The mathematical theory of kinetic equations, particularly on quantum Boltzmann equations;</li>
+        <li>The hydrodynamic limits of kinetic equations;</li>
+        <li>The mathematical theory of partial differential equations arising in fluid mechanics.</li>
     </ul>
 
-    <h3>🎓 教育背景</h3>
-    <ul>
-        <li><strong>某某大学</strong> | 毕业专业 (2020 - 2024)
-            <ul>
-                <li>主修课程或在校荣誉。</li>
-            </ul>
-        </li>
+    <p style="margin-top: 20px;">The published papers and recent achievements are as follows:</p>
+    <ul class="publication-list">
+        <li><span class="pub-number">[1]</span> N. Jiang, K. Zhou, Global Well-posedness of Boltzmann-Fermi-Dirac Equation for Hard Potential. <em>Kinetic and Related Models</em>, <strong>18</strong> (2025), no. 2, 148–185.</li>
+        <li><span class="pub-number">[2]</span> N. Jiang, K. Zhou, The Acoustic Limit from the Boltzmann Equation with Fermi-Dirac Statistics. <em>J. Differential Equations</em>, <strong>398</strong> (2024), 344–372.</li>
+        <li><span class="pub-number">[3]</span> N. Jiang, K. Zhou, The Compressible Euler and Acoustic Limits from Quantum Boltzmann Equation with Fermi-Dirac Statistics. <em>Comm. Math. Phys.</em>, <strong>405</strong> (2024), no. 2, Paper no. 23.</li>
     </ul>
 
-    <h3>🛠️ 核心技能</h3>
-    <ul>
-        <li><strong>专业技能</strong>：技能A, 技能B, 技能C</li>
-        <li><strong>语言能力</strong>：普通话, 英语</li>
-    </ul>
 
-    <h3>📬 联系方式</h3>
-    <ul>
-        <li><strong>Email</strong>：linxiaodiucm@gmail.com</li>
-        <li><strong>GitHub</strong>：<a href="https://github.com" target="_blank">Linxiaodiucm</a></li>
-    </ul>
+    <!-- Experiences 版块 -->
+    <h2>Experiences</h2>
+    
+    <div class="cv-item">
+        <div class="cv-date">Dec. 30–31, 2024</div>
+        <div class="cv-content">Invited to give a talk at Hunan University</div>
+    </div>
+    <div class="cv-item">
+        <div class="cv-date">Dec. 20–23, 2024</div>
+        <div class="cv-content">Participated in the National Conference on Theory and Application of Partial Differential Equations organized by Guangdong-Hong Kong-Macau Center for Applied Mathematics</div>
+    </div>
+    <div class="cv-item">
+        <div class="cv-date">Dec. 13–15, 2024</div>
+        <div class="cv-content">Invited to give a talk at Xiangtan University</div>
+    </div>
+
+
+    <!-- Awards 版块 -->
+    <h2>Awards</h2>
+    
+    <div class="cv-item">
+        <div class="cv-date">Oct. 2022</div>
+        <div class="cv-content">Won the Second Prize for Academic Innovation Award of Wuhan University</div>
+    </div>
 
 </body>
 </html>
