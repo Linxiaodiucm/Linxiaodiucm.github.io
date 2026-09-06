@@ -89,7 +89,7 @@
 
         /* 论文列表自动中括号计数器 */
         .publication-list { list-style-type: none; padding-left: 0; counter-reset: pub-counter; }
-        .publication-list li { position: relative; padding-left: 35px; margin-bottom: 12px; text-align: left; }
+        .publication-list li { position: relative; padding-left: 35px; margin-bottom: 12px; text-align: left; font-size: 1.1rem; }
         .publication-list li::before {
             counter-increment: pub-counter; 
             content: "[" counter(pub-counter) "]"; 
