@@ -468,24 +468,27 @@
 
                     const STORAGE_KEY = "dr_zhou_cv_analytics_v3";
 
-                    // 1. 数据加载与持久化引擎
+                    // 1. 数据加载与持久化引擎（严格清零归零版）
                     function loadAnalyticsData() {
                         let localData = localStorage.getItem(STORAGE_KEY);
                         if (localData) {
                             return JSON.parse(localData);
                         }
-                        // 首次加载或清零后，初始化基准历史数据库
+                        // 首次加载或清零后，初始化基准历史数据库，彻底从 0 开始
                         let initialData = {
-                            totalUv: Math.floor(Math.random() * 20) + 85, // 优雅的初始学术访问底数
-                            totalPv: Math.floor(Math.random() * 50) + 210,
+                            totalUv: 0, 
+                            totalPv: 0,
                             regionalCounts: {}
                         };
+                        // 将 15 个国家及 Others 的初始历史热度底数全部清空为 0
                         academicConfig.forEach(item => {
-                            initialData.regionalCounts[item.id] = item.weight;
+                            initialData.regionalCounts[item.id] = 0;
                         });
-                        initialData.regionalCounts["Others"] = 3.5;
+                        initialData.regionalCounts["Others"] = 0;
+                        
                         return initialData;
                     }
+
 
                     // 2. 核心渲染器：实时动态重算和从大到小排序排列
                     function updateDashboard(currentCountryCode) {
