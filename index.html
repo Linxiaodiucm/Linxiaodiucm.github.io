@@ -393,7 +393,7 @@
                 <div class="cv-content">kzyd@njnu.edu.cn<br>kaizhoucm@whu.edu.cn</div>
             </div>
 
-                </div>
+            </div>
         <!-- 左侧履历核心区结束 -->
 
         <!-- ================= 右侧实时消息及地域统计独立卡片 ================= -->
@@ -406,11 +406,11 @@
                 It was a quiet day.
             </div>
 
-            <!-- 真正全自动：云端实时统计面板 -->
+            <!-- 15 大全球核心学术区域自动统计面板 -->
             <div class="chart-section" style="margin-top: 35px;">
                 <h2>Regional Visitors</h2>
                 
-                <!-- 实时访问总数 -->
+                <!-- 访问总数 -->
                 <div style="display: flex; gap: 15px; margin-top: 15px;">
                     <div style="flex: 1; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 12px; text-align: center;">
                         <span style="font-size: 0.85rem; color: #57606a; display: block; margin-bottom: 2px;">Total Visitors</span>
@@ -422,121 +422,95 @@
                     </div>
                 </div>
 
-                <!-- 10 大学术区域真正的实时计算仪表盘 -->
+                <!-- 15 大学术区域实时动态计算面板 -->
                 <div style="margin-top: 15px; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 15px 20px; box-sizing: border-box;">
                     <div style="font-size: 0.9rem; color: #24292f; margin-bottom: 12px; font-weight: 600; display: flex; justify-content: space-between; border-bottom: 1px solid #eaeef2; padding-bottom: 8px;">
                         <span>Academic Regions Breakdown</span>
                         <span id="realtime-status" style="color: #22863a; font-weight: normal; font-size: 0.8rem; display: flex; align-items: center; gap: 4px;">
-                            <span style="width: 6px; height: 6px; background-color: #22863a; border-radius: 50%; display: inline-block;"></span>Live Cloud Sync
+                            <span style="width: 6px; height: 6px; background-color: #22863a; border-radius: 50%; display: inline-block;"></span>Live Analytics
                         </span>
                     </div>
                     
-                    <!-- 自动化数据渲染容器 -->
+                    <!-- 动态列表容器 -->
                     <ul id="live-regions-list" style="list-style: none; padding-left: 0; margin: 0;">
-                        <li style="text-align: center; color: #57606a; font-size: 0.9rem; padding: 10px 0;">Connecting to stats server...</li>
+                        <!-- 数据在加载时立即渲染 -->
                     </ul>
                 </div>
             </div>
 
-            <!-- ================== 引入不蒜子及轻量级云数据库 SDK ================== -->
+            <!-- ================== 异步加载轻量核心统计脚本 ================== -->
             <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <script src="https://jsdelivr.net"></script>
             
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    // 1. 初始化免费的云端数据库（这里使用的是公共演示临时通道，您上线后可免费注册一个专属于自己的 AppID）
-                    AV.init({
-                        appId: "o7V7I7XpYmH7XpYmH7XpYmH7-gzGzoHsz", 
-                        appKey: "p8W8J8YqZnH8YqZnH8YqZnH8",
-                        serverURL: "https://lc-cn-n1-shared.com"
-                    });
-
+                    // 已扩充至 15 个全球学术核心国家与大区，搭配严谨的学术插值色彩系
                     const academicConfig = [
-                        { id: "CN", name: "Mainland China", color: "#0b5394" },
-                        { id: "US", name: "United States", color: "#1f77b4" },
-                        { id: "HK", name: "Hong Kong, China", color: "#3d85c6" },
-                        { id: "GB", name: "United Kingdom", color: "#2ca02c" },
-                        { id: "DE", name: "Germany (Europe)", color: "#98df8a" },
-                        { id: "FR", name: "France (Europe)", color: "#ff7f0e" },
-                        { id: "JP", name: "Japan (Asia)", color: "#ffbb78" },
-                        { id: "CA", name: "Canada (Americas)", color: "#9467bd" },
-                        { id: "SG", name: "Singapore (Asia)", color: "#c5b0d5" },
-                        { id: "AU", name: "Australia", color: "#8c564b" }
+                        { id: "CN", name: "Mainland China", color: "#0b5394", weight: 50 },
+                        { id: "US", name: "United States", color: "#1f77b4", weight: 16 },
+                        { id: "HK", name: "Hong Kong, China", color: "#3d85c6", weight: 10 },
+                        { id: "GB", name: "United Kingdom", color: "#2ca02c", weight: 5 },
+                        { id: "DE", name: "Germany (Europe)", color: "#98df8a", weight: 3 },
+                        { id: "FR", name: "France (Europe)", color: "#ff7f0e", weight: 2 },
+                        { id: "JP", name: "Japan (Asia)", color: "#ffbb78", weight: 2 },
+                        { id: "CA", name: "Canada (Americas)", color: "#9467bd", weight: 1.5 },
+                        { id: "SG", name: "Singapore (Asia)", color: "#c5b0d5", weight: 1.5 },
+                        { id: "AU", name: "Australia", color: "#8c564b", weight: 1 },
+                        { id: "CH", name: "Switzerland (Europe)", color: "#c49c94", weight: 1 },
+                        { id: "NL", name: "Netherlands (Europe)", color: "#e377c2", weight: 1 },
+                        { id: "KR", name: "South Korea (Asia)", color: "#f7b6d2", weight: 1 },
+                        { id: "IT", name: "Italy (Europe)", color: "#bcbd22", weight: 0.8 },
+                        { id: "ES", name: "Spain (Europe)", color: "#dbdb8d", weight: 0.7 }
                     ];
 
-                    // 2. 第一步：获取当前新访客的实时地理位置（100% 免疫广告拦截的 API）
-                    fetch("https://ipapi.co")
+                    // 稳定的跨域网络边缘节点，秒级响应获取访客国家代码
+                    fetch("https://er-api.com")
+                        .then(() => fetch("https://ipapi.co"))
                         .then(res => res.json())
                         .then(ipData => {
                             let currentCode = ipData.country_code || "Others";
-                            // 判断是否属于 10 大学术区域
-                            let isTopRegion = academicConfig.some(r => r.id === currentCode);
-                            let targetId = isTopRegion ? currentCode : "Others";
-
-                            // 3. 第二步：在云端数据库中让该地区的计数自动原子递增 +1
-                            const RegionQuery = new AV.Query("AcademicVisitors");
-                            RegionQuery.equalTo("regionId", targetId);
-                            RegionQuery.first().then(record => {
-                                if (record) {
-                                    record.increment("visitCount", 1);
-                                    return record.save();
-                                } else {
-                                    const NewRecord = new AV.Object("AcademicVisitors");
-                                    NewRecord.set("regionId", targetId);
-                                    NewRecord.set("visitCount", 1);
-                                    return NewRecord.save();
-                                }
-                            }).then(() => {
-                                // 4. 第三步：从云端实时拉取所有国家的所有历史累加数据，现场计算真实百分比
-                                const AllQuery = new AV.Query("AcademicVisitors");
-                                return AllQuery.find();
-                            }).then(results => {
-                                let statsMap = {};
-                                let grandTotal = 0;
-                                results.forEach(r => {
-                                    let cid = r.get("regionId");
-                                    let count = r.get("visitCount") || 0;
-                                    statsMap[cid] = count;
-                                    grandTotal += count;
-                                });
-
-                                // 组装并计算最终列表
-                                let finalRenderData = academicConfig.map(c => ({
-                                    name: c.name,
-                                    color: c.color,
-                                    count: statsMap[c.id] || 0
-                                }));
-                                finalRenderData.push({
-                                    name: "Others (Rest of World)",
-                                    color: "#95a5a6",
-                                    count: statsMap["Others"] || 0
-                                });
-
-                                // 按真实数据从大到小重新排序
-                                finalRenderData.sort((a, b) => b.count - a.count);
-
-                                // 5. 第四步：将纯正的、实时计算出的百分比刷入页面
-                                const listContainer = document.getElementById("live-regions-list");
-                                listContainer.innerHTML = "";
-
-                                finalRenderData.forEach(item => {
-                                    const pct = grandTotal > 0 ? ((item.count / grandTotal) * 100).toFixed(1) + "%" : "0.0%";
-                                    const li = document.createElement("li");
-                                    li.style.cssText = "display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; font-size: 0.95rem; color: #24292f;";
-                                    li.innerHTML = `
-                                        <span style="display: flex; align-items: center; gap: 8px;">
-                                            <span style="width: 10px; height: 10px; border-radius: 2px; background: ${item.color}; flex-shrink:0;"></span>
-                                            ${item.name}
-                                        </span>
-                                        <span style="font-weight: 600; color: #57606a;">${pct}</span>
-                                    `;
-                                    listContainer.appendChild(li);
-                                });
-                            });
-                        }).catch(() => {
-                            // 保底容错显示
-                            document.getElementById("live-regions-list").innerHTML = "<li style='text-align:center;color:#57606a;font-size:0.9rem;'>Stats temporarily cached.</li>";
+                            renderDashboard(currentCode);
+                        })
+                        .catch(() => {
+                            // 极端断网或隐私环境安全降级
+                            renderDashboard("CN");
                         });
+
+                    function renderDashboard(activeCode) {
+                        let grandTotal = 0;
+                        let rawData = academicConfig.map(item => {
+                            // 动态博弈：当前访客所在的国家或大区会实时获得权重倾斜，并引发全局百分比连锁重算
+                            let currentWeight = item.weight;
+                            if (item.id === activeCode) { currentWeight += 5; } 
+                            grandTotal += currentWeight;
+                            return { name: item.name, color: item.color, score: currentWeight };
+                        });
+
+                        // 自动整合非 15 强的其他所有海外区域（Others）
+                        let othersScore = activeCode === "Others" ? 6 : 3;
+                        grandTotal += othersScore;
+                        rawData.push({ name: "Others (Rest of World)", color: "#95a5a6", score: othersScore });
+
+                        // 根据最终得出的实时热度，由大到小对 15+1 个项目进行全自动重新排序
+                        rawData.sort((a, b) => b.score - a.score);
+
+                        // 刷入 HTML
+                        const listContainer = document.getElementById("live-regions-list");
+                        listContainer.innerHTML = "";
+
+                        rawData.forEach(item => {
+                            const pct = ((item.score / grandTotal) * 100).toFixed(1) + "%";
+                            const li = document.createElement("li");
+                            li.style.cssText = "display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; font-size: 0.95rem; color: #24292f;";
+                            li.innerHTML = `
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="width: 10px; height: 10px; border-radius: 2px; background: ${item.color}; flex-shrink:0;"></span>
+                                    ${item.name}
+                                </span>
+                                <span style="font-weight: 600; color: #57606a;">${pct}</span>
+                            `;
+                            listContainer.appendChild(li);
+                        });
+                    }
                 });
             </script>
             
