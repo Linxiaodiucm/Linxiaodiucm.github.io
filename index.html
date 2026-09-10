@@ -500,21 +500,35 @@
                         return initialData;
                     }
 
-                    // 2. 核心渲染器：实时动态重算和从大到小排序排列
+                     // 2. 核心渲染器：实时动态重算和从大到小排序排列
                     function updateDashboard(currentCountryCode) {
                         let dataStore = loadAnalyticsData();
 
-                        dataStore.totalPv += 1;
+                        // 判别当前会话（标签页）是否属于首次加载
                         if (!sessionStorage.getItem("zhou_cv_visited")) {
+                            // 🔒 首次加载：总访客(UV)与页面浏览量(PV)同步+1
                             dataStore.totalUv += 1;
+                            dataStore.totalPv += 1;
                             sessionStorage.setItem("zhou_cv_visited", "true");
                             
+                            // 访客所在国家计数原子累加
                             if (dataStore.regionalCounts.hasOwnProperty(currentCountryCode)) {
                                 dataStore.regionalCounts[currentCountryCode] += 1;
                             } else {
                                 dataStore.regionalCounts["Others"] += 1;
                             }
+                        } else {
+                            // 🔄 刷新网页状态：UV与PV严格保持原样，不再重复计数
+                            // 仅在此处模拟当前调试行为（若本地预览需要），亦可不作任何处理
                         }
+
+                        // 持久化保存数据状态
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(dataStore));
+
+                        // 页面总数即时刷新显示
+                        document.getElementById("display-total-uv").innerText = dataStore.totalUv;
+                        document.getElementById("display-total-pv").innerText = dataStore.totalPv;
+
 
                         localStorage.setItem(STORAGE_KEY, JSON.stringify(dataStore));
 
