@@ -406,7 +406,7 @@
                 It was a quiet day.
             </div>
 
-            <!-- 15大全球核心学术区域及清零仪表盘 -->
+            <!-- 15大全球核心学术区域及安全授权控制台 -->
             <div class="chart-section" style="margin-top: 35px;">
                 <h2>Regional Visitors</h2>
                 
@@ -423,7 +423,7 @@
                 </div>
 
                 <!-- 15大学术区域实时动态计算面板 -->
-                <div style="margin-top: 15px; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 15px 20px 10px 20px; box-sizing: border-box;">
+                <div style="margin-top: 15px; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 15px 20px 12px 20px; box-sizing: border-box;">
                     <div style="font-size: 0.9rem; color: #24292f; margin-bottom: 12px; font-weight: 600; display: flex; justify-content: space-between; border-bottom: 1px solid #eaeef2; padding-bottom: 8px;">
                         <span>Academic Regions Breakdown</span>
                         <span id="realtime-status" style="color: #22863a; font-weight: normal; font-size: 0.8rem; display: flex; align-items: center; gap: 4px;">
@@ -433,21 +433,35 @@
                     
                     <!-- 动态列表容器 -->
                     <ul id="live-regions-list" style="list-style: none; padding-left: 0; margin: 0;">
-                        <!-- 数据将在段落 B 中的 JS 加载时立即渲染 -->
+                        <!-- 数据在加载时立即渲染 -->
                     </ul>
 
-                    <!-- 隐藏的高级控制台：数据一键清零功能键 -->
-                    <div style="border-top: 1px dashed #eaeef2; margin-top: 15px; padding-top: 10px; text-align: right;">
-                        <button id="reset-analytics-btn" style="background: transparent; border: none; color: #cf222e; font-size: 0.75rem; cursor: pointer; padding: 4px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-weight: 500; transition: background 0.2s;" onmouseover="this.style.background='#ffebe9'" onmouseout="this.style.background='transparent'">
-                            🗑️ Reset Analytics (清零)
-                        </button>
+                    <!-- 升级版：带动态伸缩动画的安全控制台 -->
+                    <div style="border-top: 1px dashed #eaeef2; margin-top: 15px; padding-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        
+                        <!-- 左侧：错误提示信息锚点（英文学术风） -->
+                        <span id="auth-error-msg" style="color: #cf222e; font-size: 0.8rem; font-weight: 500; opacity: 0; transition: opacity 0.3s; white-space: nowrap;"></span>
+                        
+                        <!-- 右侧：交互控制区组合 -->
+                        <div style="display: flex; align-items: center; gap: 6px; margin-left: auto;">
+                            <!-- 动态滑出式文本框容器 -->
+                            <div id="input-wrapper" style="width: 0px; opacity: 0; overflow: hidden; transition: all 0.3s ease; display: flex; align-items: center;">
+                                <input type="text" id="auth-code-input" placeholder="Enter token..." style="width: 100px; height: 26px; border: 1px solid #d0d7de; border-radius: 4px; padding: 0 8px; font-size: 0.8rem; box-sizing: border-box; outline: none; font-family: monospace;">
+                            </div>
+                            
+                            <!-- 核心多功能转换按键 -->
+                            <button id="reset-action-btn" style="background: #f6f8fa; border: 1px solid #d0d7de; color: #24292f; font-size: 0.75rem; cursor: pointer; padding: 4px 10px; border-radius: 4px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; height: 26px; box-sizing: border-box; transition: all 0.2s;">
+                                ⚙️ Reset
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <!-- ================== 核心智能动态统计算法脚本 ================== -->
+            <!-- ================== 核心智能动态统计算法与授权安全控制脚本 ================== -->
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    // 完美的15个全球核心学术活跃国家和地区配置（带有经典插值学术色彩系）
+                    // 完美的15个全球核心学术活跃国家和地区配置
                     const academicConfig = [
                         { id: "CN", name: "Mainland China", color: "#0b5394", weight: 50 },
                         { id: "US", name: "United States", color: "#1f77b4", weight: 16 },
@@ -466,7 +480,7 @@
                         { id: "ES", name: "Spain (Europe)", color: "#dbdb8d", weight: 0.7 }
                     ];
 
-                    const STORAGE_KEY = "dr_zhou_cv_analytics_v3";
+                    const STORAGE_KEY = "dr_zhou_cv_analytics_v4";
 
                     // 1. 数据加载与持久化引擎（严格清零归零版）
                     function loadAnalyticsData() {
@@ -474,34 +488,27 @@
                         if (localData) {
                             return JSON.parse(localData);
                         }
-                        // 首次加载或清零后，初始化基准历史数据库，彻底从 0 开始
                         let initialData = {
                             totalUv: 0, 
                             totalPv: 0,
                             regionalCounts: {}
                         };
-                        // 将 15 个国家及 Others 的初始历史热度底数全部清空为 0
                         academicConfig.forEach(item => {
                             initialData.regionalCounts[item.id] = 0;
                         });
                         initialData.regionalCounts["Others"] = 0;
-                        
                         return initialData;
                     }
-
 
                     // 2. 核心渲染器：实时动态重算和从大到小排序排列
                     function updateDashboard(currentCountryCode) {
                         let dataStore = loadAnalyticsData();
 
-                        // 递增当前访问
                         dataStore.totalPv += 1;
-                        // 模拟独立访客判定逻辑（防止短时间内重复刷新过度污染数据）
                         if (!sessionStorage.getItem("zhou_cv_visited")) {
                             dataStore.totalUv += 1;
                             sessionStorage.setItem("zhou_cv_visited", "true");
                             
-                            // 让访客所在的国家或Others标签的计数值实时原子累加递增
                             if (dataStore.regionalCounts.hasOwnProperty(currentCountryCode)) {
                                 dataStore.regionalCounts[currentCountryCode] += 1;
                             } else {
@@ -509,37 +516,30 @@
                             }
                         }
 
-                        // 保存数据状态
                         localStorage.setItem(STORAGE_KEY, JSON.stringify(dataStore));
 
-                        // 页面总数即时刷新显示
                         document.getElementById("display-total-uv").innerText = dataStore.totalUv;
                         document.getElementById("display-total-pv").innerText = dataStore.totalPv;
 
-                        // 计算全盘总权重
                         let grandTotalScore = 0;
                         for (let key in dataStore.regionalCounts) {
                             grandTotalScore += dataStore.regionalCounts[key];
                         }
 
-                        // 构建合并渲染矩阵
                         let renderMatrix = academicConfig.map(item => ({
                             name: item.name,
                             color: item.color,
                             score: dataStore.regionalCounts[item.id] || 0
                         }));
 
-                        // 强制将非 15 强的其他所有国家/海外区域合并至 Others
                         renderMatrix.push({
                             name: "Others (Rest of World)",
                             color: "#95a5a6",
                             score: dataStore.regionalCounts["Others"] || 0
                         });
 
-                        // 核心高级逻辑：根据累计热度数值，由大到小对所有项目进行全自动完美实时重排
                         renderMatrix.sort((a, b) => b.score - a.score);
 
-                        // 刷入网页容器内
                         const listContainer = document.getElementById("live-regions-list");
                         listContainer.innerHTML = "";
 
@@ -559,24 +559,75 @@
                     }
 
                     // 3. 高效获取网络地理边缘节点
+                    let detectedCountry = "CN";
                     fetch("https://ipapi.co")
                         .then(res => res.json())
                         .then(ipData => {
-                            let countryCode = ipData.country_code || "Others";
-                            updateDashboard(countryCode);
+                            detectedCountry = ipData.country_code || "Others";
+                            updateDashboard(detectedCountry);
                         })
                         .catch(() => {
-                            // 如果访客处于局域网阻断状态，自动进行无缝安全优雅降级
                             updateDashboard("CN");
                         });
 
-                    // 4. 一键数据清零/初始化触发引擎
-                    document.getElementById("reset-analytics-btn").addEventListener("click", function() {
-                        if (confirm("Are you sure you want to clear and initialize the tracking data?\n确定要清除并重置所有访问统计数据吗？")) {
-                            localStorage.removeItem(STORAGE_KEY);
-                            sessionStorage.removeItem("zhou_cv_visited");
-                            // 瞬间刷新页面回到全新初始化状态
-                            location.reload();
+                    // 4. 升级版高级控制台：滑出式输入框与安全校验引擎
+                    let isConsoleOpen = false;
+                    const resetBtn = document.getElementById("reset-action-btn");
+                    const inputWrapper = document.getElementById("input-wrapper");
+                    const authInput = document.getElementById("auth-code-input");
+                    const errorMsg = document.getElementById("auth-error-msg");
+
+                    resetBtn.addEventListener("click", function() {
+                        if (!isConsoleOpen) {
+                            // 第一次点击：滑出输入框并聚焦，按钮变成确定样式
+                            isConsoleOpen = true;
+                            inputWrapper.style.width = "115px";
+                            inputWrapper.style.opacity = "1";
+                            resetBtn.innerHTML = "Confirm";
+                            resetBtn.style.background = "#24292f";
+                            resetBtn.style.color = "#ffffff";
+                            resetBtn.style.borderColor = "#24292f";
+                            errorMsg.style.opacity = "0"; // 清除上一次的错误信息
+                            setTimeout(() => authInput.focus(), 150);
+                        } else {
+                            // 第二次点击：执行暗号安全校验
+                            const token = authInput.value.trim();
+                            
+                            if (token === "rst-0") {
+                                // 校验通过：严格清零
+                                if (confirm("Authorized successfully.\nAre you sure you want to initialize all data?")) {
+                                    localStorage.removeItem(STORAGE_KEY);
+                                    sessionStorage.removeItem("zhou_cv_visited");
+                                    location.reload();
+                                }
+                            } else {
+                                // 校验失败：右侧平滑隐藏回原样，左侧弹出严谨的英文学术报错
+                                errorMsg.innerText = "Reset failed: Invalid authorization token.";
+                                errorMsg.style.opacity = "1";
+                                
+                                // 自动恢复原始 Reset 按钮状态并隐藏输入框
+                                isConsoleOpen = false;
+                                authInput.value = "";
+                                inputWrapper.style.width = "0px";
+                                inputWrapper.style.opacity = "0";
+                                resetBtn.innerHTML = "⚙️ Reset";
+                                resetBtn.style.background = "#f6f8fa";
+                                resetBtn.style.color = "#24292f";
+                                resetBtn.style.borderColor = "#d0d7de";
+
+                                // 错误提示 5 秒后自动淡出消失
+                                setTimeout(() => {
+                                    errorMsg.style.opacity = "0";
+                                frameCount = 0;
+                                }, 5000);
+                            }
+                        }
+                    });
+
+                    // 允许在输入框中按回车键直接触发确定
+                    authInput.addEventListener("keypress", function(e) {
+                        if (e.key === "Enter") {
+                            resetBtn.click();
                         }
                     });
                 });
