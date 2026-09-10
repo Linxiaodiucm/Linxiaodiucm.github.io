@@ -393,7 +393,7 @@
                 <div class="cv-content">kzyd@njnu.edu.cn<br>kaizhoucm@whu.edu.cn</div>
             </div>
 
-                </div>
+        </div>
         <!-- 左侧履历核心区结束 -->
 
         <!-- ================= 右侧实时消息及地域统计独立卡片 ================= -->
@@ -402,66 +402,81 @@
             <!-- 近期动态 -->
             <h2>Recent News</h2>
             <div class="news-item">
-                <span class="news-date">Sep. 10, 2026</span>
+                <span class="news-date">Sep. 7, 2026</span>
                 It was a quiet day.
             </div>
 
-            <!-- 15大全球核心学术区域及安全授权控制台 -->
+            <!-- 升级版：高安全学术区域动态面板 -->
             <div class="chart-section" style="margin-top: 35px;">
-                <h2>Regional Visitors</h2>
                 
-                <!-- 访问总数指标 -->
-                <div style="display: flex; gap: 15px; margin-top: 15px;">
-                    <div style="flex: 1; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 12px; text-align: center;">
-                        <span style="font-size: 0.85rem; color: #57606a; display: block; margin-bottom: 2px;">Total Visitors</span>
-                        <span id="display-total-uv" style="font-size: 1.4rem; font-weight: bold; color: #0b5394;">1</span>
-                    </div>
-                    <div style="flex: 1; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 12px; text-align: center;">
-                        <span style="font-size: 0.85rem; color: #57606a; display: block; margin-bottom: 2px;">Page Views</span>
-                        <span id="display-total-pv" style="font-size: 1.4rem; font-weight: bold; color: #3d85c6;">1</span>
-                    </div>
-                </div>
-
-                <!-- 15大学术区域实时动态计算面板 -->
-                <div style="margin-top: 15px; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 15px 20px 12px 20px; box-sizing: border-box;">
-                    <div style="font-size: 0.9rem; color: #24292f; margin-bottom: 12px; font-weight: 600; display: flex; justify-content: space-between; border-bottom: 1px solid #eaeef2; padding-bottom: 8px;">
-                        <span>Academic Regions Breakdown</span>
-                        <span id="realtime-status" style="color: #22863a; font-weight: normal; font-size: 0.8rem; display: flex; align-items: center; gap: 4px;">
-                            <span style="width: 6px; height: 6px; background-color: #22863a; border-radius: 50%; display: inline-block;"></span>Live Analytics
-                        </span>
-                    </div>
+                <!-- 顶栏：包含标题和“显示/隐藏”的控制中心 -->
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0b5394; padding-bottom: 5px; margin-bottom: 15px;">
+                    <h2 style="margin: 0; border: none; padding: 0; font-size: 1.7rem; color: #0b5394;">Regional Visitors</h2>
                     
-                    <!-- 动态列表容器 -->
-                    <ul id="live-regions-list" style="list-style: none; padding-left: 0; margin: 0;">
-                        <!-- 数据在加载时立即渲染 -->
-                    </ul>
-
-                    <!-- 升级版：带动态伸缩动画的安全控制台 -->
-                    <div style="border-top: 1px dashed #eaeef2; margin-top: 15px; padding-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        
-                        <!-- 左侧：错误提示信息锚点（英文学术风） -->
-                        <span id="auth-error-msg" style="color: #cf222e; font-size: 0.8rem; font-weight: 500; opacity: 0; transition: opacity 0.3s; white-space: nowrap;"></span>
-                        
-                        <!-- 右侧：交互控制区组合 -->
-                        <div style="display: flex; align-items: center; gap: 6px; margin-left: auto;">
-                            <!-- 动态滑出式文本框容器 -->
-                            <div id="input-wrapper" style="width: 0px; opacity: 0; overflow: hidden; transition: all 0.3s ease; display: flex; align-items: center;">
-                                <input type="text" id="auth-code-input" placeholder="Enter token..." style="width: 100px; height: 26px; border: 1px solid #d0d7de; border-radius: 4px; padding: 0 8px; font-size: 0.8rem; box-sizing: border-box; outline: none; font-family: monospace;">
-                            </div>
-                            
-                            <!-- 核心多功能转换按键 -->
-                            <button id="reset-action-btn" style="background: #f6f8fa; border: 1px solid #d0d7de; color: #24292f; font-size: 0.75rem; cursor: pointer; padding: 4px 10px; border-radius: 4px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; height: 26px; box-sizing: border-box; transition: all 0.2s;">
-                                ⚙️ Reset
-                            </button>
+                    <!-- 显示/隐藏控制组合键 -->
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <!-- 展开/折叠报错提示信息 -->
+                        <span id="view-error-msg" style="color: #cf222e; font-size: 0.75rem; font-weight: 500; opacity: 0; transition: opacity 0.3s; white-space: nowrap;"></span>
+                        <!-- 隐藏的滑出式查看输入框容器 -->
+                        <div id="view-input-wrapper" style="width: 0px; opacity: 0; overflow: hidden; transition: all 0.3s ease; display: flex; align-items: center;">
+                            <input type="text" id="view-code-input" placeholder="Unlock code..." style="width: 95px; height: 24px; border: 1px solid #d0d7de; border-radius: 4px; padding: 0 6px; font-size: 0.75rem; box-sizing: border-box; outline: none; font-family: monospace;">
                         </div>
-
+                        <button id="toggle-view-btn" style="background: #f6f8fa; border: 1px solid #d0d7de; color: #24292f; font-size: 0.75rem; cursor: pointer; padding: 2px 8px; border-radius: 4px; font-weight: 600; height: 24px; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                            👁️ Show
+                        </button>
                     </div>
                 </div>
+                
+                <!-- 【核心包裹层】：默认完全隐藏 (display: none)，授权成功后切换显示 -->
+                <div id="analytics-secure-data-block" style="display: none; opacity: 0; transition: opacity 0.4s ease;">
+                    
+                    <!-- 访问总数指标 -->
+                    <div style="display: flex; gap: 15px; margin-top: 5px;">
+                        <div style="flex: 1; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 12px; text-align: center;">
+                            <span style="font-size: 0.85rem; color: #57606a; display: block; margin-bottom: 2px;">Total Visitors</span>
+                            <span id="display-total-uv" style="font-size: 1.4rem; font-weight: bold; color: #0b5394;">1</span>
+                        </div>
+                        <div style="flex: 1; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 12px; text-align: center;">
+                            <span style="font-size: 0.85rem; color: #57606a; display: block; margin-bottom: 2px;">Page Views</span>
+                            <span id="display-total-pv" style="font-size: 1.4rem; font-weight: bold; color: #3d85c6;">1</span>
+                        </div>
+                    </div>
+
+                    <!-- 15大学术区域计算面板 -->
+                    <div style="margin-top: 15px; background: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; padding: 15px 20px 12px 20px; box-sizing: border-box;">
+                        <div style="font-size: 0.9rem; color: #24292f; margin-bottom: 12px; font-weight: 600; display: flex; justify-content: space-between; border-bottom: 1px solid #eaeef2; padding-bottom: 8px;">
+                            <span>Academic Regions Breakdown</span>
+                            <span id="realtime-status" style="color: #22863a; font-weight: normal; font-size: 0.8rem; display: flex; align-items: center; gap: 4px;">
+                                <span style="width: 6px; height: 6px; background-color: #22863a; border-radius: 50%; display: inline-block;"></span>Live Analytics
+                            </span>
+                        </div>
+                        
+                        <!-- 动态列表容器 -->
+                        <ul id="live-regions-list" style="list-style: none; padding-left: 0; margin: 0;">
+                            <!-- 数据自动加载 -->
+                        </ul>
+
+                        <!-- 数据一键清零功能键（暗号 rst-0） -->
+                        <div style="border-top: 1px dashed #eaeef2; margin-top: 15px; padding-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                            <span id="auth-error-msg" style="color: #cf222e; font-size: 0.8rem; font-weight: 500; opacity: 0; transition: opacity 0.3s; white-space: nowrap;"></span>
+                            <div style="display: flex; align-items: center; gap: 6px; margin-left: auto;">
+                                <div id="input-wrapper" style="width: 0px; opacity: 0; overflow: hidden; transition: all 0.3s ease; display: flex; align-items: center;">
+                                    <input type="text" id="auth-code-input" placeholder="Enter token..." style="width: 100px; height: 26px; border: 1px solid #d0d7de; border-radius: 4px; padding: 0 8px; font-size: 0.8rem; box-sizing: border-box; outline: none; font-family: monospace;">
+                                </div>
+                                <button id="reset-action-btn" style="background: #f6f8fa; border: 1px solid #d0d7de; color: #24292f; font-size: 0.75rem; cursor: pointer; padding: 4px 10px; border-radius: 4px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; height: 26px; box-sizing: border-box; transition: all 0.2s;">
+                                    ⚙️ Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- 【核心包裹层结束】 -->
             </div>
-            <!-- ================== 核心智能动态统计算法与授权安全控制脚本 ================== -->
+
+                        <!-- ================== 核心智能动态统计、查看锁定与安全清零引擎脚本 ================== -->
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    // 完美的15个全球核心学术活跃国家和地区配置
+                    // 15个全球核心学术活跃国家和地区配置
                     const academicConfig = [
                         { id: "CN", name: "Mainland China", color: "#0b5394", weight: 50 },
                         { id: "US", name: "United States", color: "#1f77b4", weight: 16 },
@@ -480,7 +495,7 @@
                         { id: "ES", name: "Spain (Europe)", color: "#dbdb8d", weight: 0.7 }
                     ];
 
-                    const STORAGE_KEY = "dr_zhou_cv_analytics_v4";
+                    const STORAGE_KEY = "dr_zhou_cv_analytics_v5";
 
                     // 1. 数据加载与持久化引擎（严格清零归零版）
                     function loadAnalyticsData() {
@@ -500,35 +515,22 @@
                         return initialData;
                     }
 
-                     // 2. 核心渲染器：实时动态重算和从大到小排序排列
+                    // 2. 核心渲染器：实时动态重算和从大到小排序排列
                     function updateDashboard(currentCountryCode) {
                         let dataStore = loadAnalyticsData();
 
-                        // 判别当前会话（标签页）是否属于首次加载
+                        // 判别当前会话（标签页）是否属于首次加载（刷新不加 PV 🔒）
                         if (!sessionStorage.getItem("zhou_cv_visited")) {
-                            // 🔒 首次加载：总访客(UV)与页面浏览量(PV)同步+1
                             dataStore.totalUv += 1;
                             dataStore.totalPv += 1;
                             sessionStorage.setItem("zhou_cv_visited", "true");
                             
-                            // 访客所在国家计数原子累加
                             if (dataStore.regionalCounts.hasOwnProperty(currentCountryCode)) {
                                 dataStore.regionalCounts[currentCountryCode] += 1;
                             } else {
                                 dataStore.regionalCounts["Others"] += 1;
                             }
-                        } else {
-                            // 🔄 刷新网页状态：UV与PV严格保持原样，不再重复计数
-                            // 仅在此处模拟当前调试行为（若本地预览需要），亦可不作任何处理
                         }
-
-                        // 持久化保存数据状态
-                        localStorage.setItem(STORAGE_KEY, JSON.stringify(dataStore));
-
-                        // 页面总数即时刷新显示
-                        document.getElementById("display-total-uv").innerText = dataStore.totalUv;
-                        document.getElementById("display-total-pv").innerText = dataStore.totalPv;
-
 
                         localStorage.setItem(STORAGE_KEY, JSON.stringify(dataStore));
 
@@ -572,7 +574,7 @@
                         });
                     }
 
-                    // 3. 高效获取网络地理边缘节点
+                    // 3. 高效获取网络地理边缘节点并自动统计
                     let detectedCountry = "CN";
                     fetch("https://ipapi.co")
                         .then(res => res.json())
@@ -583,44 +585,107 @@
                         .catch(() => {
                             updateDashboard("CN");
                         });
+                    // 4. 控制逻辑：👁️ Show / Hide 密码查看授权 (暗号: BFD)
+                    let isPanelUnlocked = false;
+                    let isViewConsoleOpen = false;
+                    const toggleViewBtn = document.getElementById("toggle-view-btn");
+                    const viewInputWrapper = document.getElementById("view-input-wrapper");
+                    const viewInput = document.getElementById("view-code-input");
+                    const viewErrorMsg = document.getElementById("view-error-msg");
+                    const secureDataBlock = document.getElementById("analytics-secure-data-block");
 
-                    // 4. 升级版高级控制台：滑出式输入框与安全校验引擎
-                    let isConsoleOpen = false;
+                    toggleViewBtn.addEventListener("click", function() {
+                        if (isPanelUnlocked) {
+                            // 已解锁状态下点击：一键折叠并重新上锁
+                            isPanelUnlocked = false;
+                            secureDataBlock.style.opacity = "0";
+                            setTimeout(() => { secureDataBlock.style.display = "none"; }, 400);
+                            toggleViewBtn.innerHTML = "👁️ Show";
+                            toggleViewBtn.style.background = "#f6f8fa";
+                            toggleViewBtn.style.color = "#24292f";
+                            return;
+                        }
+
+                        if (!isViewConsoleOpen) {
+                            // 第一次点击：滑出输入框并聚焦
+                            isViewConsoleOpen = true;
+                            viewInputWrapper.style.width = "105px";
+                            viewInputWrapper.style.opacity = "1";
+                            toggleViewBtn.innerHTML = "Unlock";
+                            toggleViewBtn.style.background = "#24292f";
+                            toggleViewBtn.style.color = "#ffffff";
+                            viewErrorMsg.style.opacity = "0";
+                            setTimeout(() => viewInput.focus(), 150);
+                        } else {
+                            // 第二次点击：校验 BFD 暗号
+                            const viewToken = viewInput.value.trim();
+                            if (viewToken === "BFD") {
+                                // 密码正确：解锁展现面板
+                                isPanelUnlocked = true;
+                                isViewConsoleOpen = false;
+                                viewInput.value = "";
+                                viewInputWrapper.style.width = "0px";
+                                viewInputWrapper.style.opacity = "0";
+                                toggleViewBtn.innerHTML = "🔒 Hide";
+                                toggleViewBtn.style.background = "#fff0f0";
+                                toggleViewBtn.style.color = "#cf222e";
+                                
+                                secureDataBlock.style.display = "block";
+                                setTimeout(() => { secureDataBlock.style.opacity = "1"; }, 50);
+                            } else {
+                                // 密码错误：弹错并恢复原样
+                                viewErrorMsg.innerText = "Invalid unlock token.";
+                                viewErrorMsg.style.opacity = "1";
+                                
+                                isViewConsoleOpen = false;
+                                viewInput.value = "";
+                                viewInputWrapper.style.width = "0px";
+                                viewInputWrapper.style.opacity = "0";
+                                toggleViewBtn.innerHTML = "👁️ Show";
+                                toggleViewBtn.style.background = "#f6f8fa";
+                                toggleViewBtn.style.color = "#24292f";
+                                
+                                setTimeout(() => { viewErrorMsg.style.opacity = "0"; }, 4000);
+                            }
+                        }
+                    });
+
+                    // 监听查看输入框的回车事件
+                    viewInput.addEventListener("keypress", function(e) {
+                        if (e.key === "Enter") { toggleViewBtn.click(); }
+                    });
+
+                    // 5. 原有控制逻辑：⚙️ Reset 清零校验引擎（暗号: rst-0）
+                    let isResetConsoleOpen = false;
                     const resetBtn = document.getElementById("reset-action-btn");
                     const inputWrapper = document.getElementById("input-wrapper");
                     const authInput = document.getElementById("auth-code-input");
                     const errorMsg = document.getElementById("auth-error-msg");
 
                     resetBtn.addEventListener("click", function() {
-                        if (!isConsoleOpen) {
-                            // 第一次点击：滑出输入框并聚焦，按钮变成确定样式
-                            isConsoleOpen = true;
+                        if (!isResetConsoleOpen) {
+                            isResetConsoleOpen = true;
                             inputWrapper.style.width = "115px";
                             inputWrapper.style.opacity = "1";
                             resetBtn.innerHTML = "Confirm";
                             resetBtn.style.background = "#24292f";
                             resetBtn.style.color = "#ffffff";
                             resetBtn.style.borderColor = "#24292f";
-                            errorMsg.style.opacity = "0"; // 清除上一次的错误信息
+                            errorMsg.style.opacity = "0";
                             setTimeout(() => authInput.focus(), 150);
                         } else {
-                            // 第二次点击：执行暗号安全校验
                             const token = authInput.value.trim();
-                            
                             if (token === "rst-0") {
-                                // 校验通过：严格清零
                                 if (confirm("Authorized successfully.\nAre you sure you want to initialize all data?")) {
                                     localStorage.removeItem(STORAGE_KEY);
                                     sessionStorage.removeItem("zhou_cv_visited");
                                     location.reload();
                                 }
                             } else {
-                                // 校验失败：右侧平滑隐藏回原样，左侧弹出严谨的英文学术报错
                                 errorMsg.innerText = "Reset failed: Invalid authorization token.";
                                 errorMsg.style.opacity = "1";
                                 
-                                // 自动恢复原始 Reset 按钮状态并隐藏输入框
-                                isConsoleOpen = false;
+                                isResetConsoleOpen = false;
                                 authInput.value = "";
                                 inputWrapper.style.width = "0px";
                                 inputWrapper.style.opacity = "0";
@@ -629,20 +694,13 @@
                                 resetBtn.style.color = "#24292f";
                                 resetBtn.style.borderColor = "#d0d7de";
 
-                                // 错误提示 5 秒后自动淡出消失
-                                setTimeout(() => {
-                                    errorMsg.style.opacity = "0";
-                                frameCount = 0;
-                                }, 5000);
+                                setTimeout(() => { errorMsg.style.opacity = "0"; }, 5000);
                             }
                         }
                     });
 
-                    // 允许在输入框中按回车键直接触发确定
                     authInput.addEventListener("keypress", function(e) {
-                        if (e.key === "Enter") {
-                            resetBtn.click();
-                        }
+                        if (e.key === "Enter") { resetBtn.click(); }
                     });
                 });
             </script>
