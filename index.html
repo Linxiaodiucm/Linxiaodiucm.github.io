@@ -39,7 +39,7 @@
             min-width: 0;
         }
 
-        /* 右侧实时消息卡片：完美还原您原本的优雅轻灰色底框 */
+        /* 右侧实时消息卡片：还原优雅的轻灰色底框 */
         .right-news-sidebar {
             width: 500px;
             min-width: 500px;
@@ -225,6 +225,7 @@
             margin-bottom: 10px;
             font-size: 0.95rem;
             color: #24292f;
+            white-space: nowrap; /* 保证文字和百分比在同一行不换行 */
         }
 
         .legend-item:last-child {
@@ -242,11 +243,13 @@
             height: 12px;
             border-radius: 3px;
             display: inline-block;
+            flex-shrink: 0;
         }
 
         .legend-pct {
             font-weight: 600;
             color: #57606a;
+            padding-left: 10px;
         }
 
         @media (max-width: 768px) {
@@ -321,327 +324,73 @@
                 </div>
             </div>
 
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic CV of Dr. Kai Zhou</title>
-    <style>
-        /* 全局排版 */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #24292f;
-            line-height: 1.5;
-            max-width: 1600px; /* 拓宽页面以容纳双栏 */
-            margin: 40px auto 40px 40px;
-            padding: 0 20px;
-            background-color: #ffffff;
-        }
+                        <!-- 4. Research Works 版块 (前 5 篇) -->
+            <h2>Research Works and Recent Achievements</h2>
+            <p style="margin-top: 20px !important; margin-bottom: 10px !important;"><span style="font-size: 1.2rem !important; display: inline-block !important;">Here are my published papers and recent achievements:</span></p>
 
-        .site-title {
-            font-size: 2.2rem;
-            color: #000000;
-            font-weight: 700;
-            margin-top: 10px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #d0d7de;
-            padding-bottom: 15px;
-        }
+            <ol class="publication-list">
+                <li>N. Jiang, H. Xu, K. Zhou, The Compressible Navier--Stokes--Fourier Approximation for the Homoenergetic Boltzmann Equation. <em>Preprint</em>.</li>
+                <li>N. Jiang, T. Yang, K. Zhou, Y.-L. Zhou, Global Stability and Relaxation for the Boltzmann--Fermi--Dirac Equation with Soft Potentials. <em>Preprint</em>.</li>
+                <li>N. Jiang, C. Wang, K. Zhou, The incompressible Navier-Stokes-Fourier limits from Boltzmann-Fermi-Dirac equation for low regularity data. <em>J. Differential Equations</em>, <strong>467</strong> (2026).</li>
+                <li>N. Jiang, W. Yang, K. Zhou, The Compressible Euler-Poisson Limit to the Vlasov-Poisson-Boltzmann System with Fermi-Dirac Statistics. <em>J. Differential Equations</em>, <strong>442</strong> (2025).</li>
+                <li>N. Jiang, K. Zhou, Global Well-posedness of Boltzmann-Fermi-Dirac Equation for Hard Potential. <em>Kinetic and Related Models</em>, <strong>18</strong> (2025), no. 2, 148–185.</li>
+                <li>N. Jiang, K. Zhou, The Acoustic Limit from the Boltzmann Equation with Fermi-Dirac Statistics. <em>J. Differential Equations</em>, <strong>398</strong> (2024), 344–372.</li>
+                <li>N. Jiang, K. Zhou, The Compressible Euler and Acoustic Limits from Quantum Boltzmann Equation with Fermi-Dirac Statistics. <em>Comm. Math. Phys.</em>, <strong>405</strong> (2024), no. 2, Paper no. 23.</li>
+                <li>C. Luo, K. Zhou, A Generalized Beale-Kato-Majda Breakdown Criterion for the Free-boundary Problem in Euler Equations with Surface Tension. <em>SIAM J. Math. Anal.</em>, <strong>56</strong> (2024), no. 1, 374–411.</li>
+                <li>N. Jiang, L. Xiong, K. Zhou, The Incompressible Navier-Stokes-Fourier Limit from Boltzmann-Fermi-Dirac Equation. <em>J. Differential Equations</em>, <strong>308</strong> (2022), no. 1, 77–129.</li>
+                <li>
+                    S. Wu, K. Zhou, Hyperbolic-parabolic Type Chemotaxis Systems in 
+                    <math xmlns="http://w3.org">
+                        <msup> <mi>ℝ</mi> <mi>N</mi> </msup>
+                    </math>. 
+                    <em>J. Partial Differ. Equ.</em>, <strong>30</strong> (2017), no. 4, 329–343.
+                </li>
+            </ol>
 
-        /* 核心：弹性左右双栏大布局 */
-        .layout-container {
-            display: flex;
-            gap: 50px; /* 左右两栏的黄金间距 */
-            align-items: flex-start;
-        }
-
-        /* 左侧主履历区域占满剩余空间 */
-        .left-cv-content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* 右侧实时消息卡片：完美还原您原本的优雅轻灰色底框 */
-        .right-news-sidebar {
-            width: 500px;
-            min-width: 500px;
-            background-color: #f6f8fa; 
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            padding: 20px;
-            box-sizing: border-box;
-            position: sticky;
-            top: 20px; /* 滚动时平滑吸顶 */
-        }
-
-        /* 大标题版块：蓝绿色底线 */
-        .left-cv-content h2 {
-            font-size: 1.7rem;
-            color: #0b5394;
-            border-bottom: 4px solid #0b5394;
-            padding-bottom: 5px;
-            margin-top: 35px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        .left-cv-content h2:first-of-type {
-            margin-top: 0;
-        }
-
-        .right-news-sidebar h2 {
-            font-size: 1.7rem;
-            color: #0b5394;
-            border-bottom: 2px solid #0b5394;
-            padding-bottom: 5px;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 1.1rem;
-            margin: 0 0 5px 0;
-            color: #000000;
-            font-weight: 600;
-        }
-
-        p, ul {
-            margin: 0 0 10px 0;
-            font-size: 1.1rem;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 6px;
-        }
-
-        /* 时间轴排版 */
-        .cv-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 18px;
-        }
-
-        .cv-date {
-            width: 200px;
-            min-width: 200px;
-            color: #57606a;
-            font-size: 1.1rem;
-            padding-top: 2px;
-        }
-
-        .cv-content {
-            flex-grow: 1;
-        }
-
-        .cv-meta {
-            color: #57606a;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-
-        /* 论文列表自动中括号计数器 */
-        .publication-list {
-            list-style-type: none;
-            padding-left: 0;
-            counter-reset: pub-counter;
-        }
-
-        .publication-list li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 12px;
-            text-align: left;
-            font-size: 1.1rem;
-        }
-
-        .publication-list li::before {
-            counter-increment: pub-counter;
-            content: "[" counter(pub-counter) "]";
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #000000;
-            width: 25px;
-            text-align: right;
-        }
-
-        /* 动态条目样式 */
-        .news-item {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            border-bottom: 1px dashed #d0d7de;
-            padding-bottom: 10px;
-        }
-
-        .news-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
-        }
-
-        .news-date {
-            font-weight: bold;
-            color: #57606a;
-            display: block;
-            margin-bottom: 3px;
-        }
-
-        /* 地域统计图表白底卡片容器样式 */
-        .chart-section {
-            margin-top: 35px;
-        }
-
-        .chart-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            margin-top: 15px;
-            background: #ffffff;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            padding: 20px;
-        }
-
-        .svg-wrapper {
-            position: relative;
-            width: 160px;
-            height: 160px;
-        }
-
-        .chart-center-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .chart-center-text .num {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #24292f;
-            display: block;
-            line-height: 1.1;
-        }
-
-        .chart-center-text .label {
-            font-size: 0.75rem;
-            color: #57606a;
-        }
-
-        .legend-list {
-            flex: 1;
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: #24292f;
-        }
-
-        .legend-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .legend-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .color-badge {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-            display: inline-block;
-        }
-
-        .legend-pct {
-            font-weight: 600;
-            color: #57606a;
-        }
-
-        @media (max-width: 768px) {
-            .layout-container {
-                flex-direction: column;
-            }
-            .right-news-sidebar {
-                width: 100%;
-                min-width: 100%;
-                position: static;
-                margin-bottom: 30px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <h1 class="site-title">Academic CV of Dr. Kai Zhou</h1>
-
-    <!-- 双栏主容器 -->
-    <div class="layout-container">
-
-        <!-- 左侧履历核心区开始 -->
-        <div class="left-cv-content">
-
-            <!-- 1. Research Interests 版块 -->
-            <h2>Research Interests</h2>
-            <ul>
-                <li>The mathematical theory of kinetic equations, particularly of quantum Boltzmann equations;</li>
-                <li>The hydrodynamic limits of kinetic equations;</li>
-                <li>The mathematical theory of partial differential equations arising in fluid mechanics.</li>
-            </ul>
-
-            <!-- 2. Positions 版块 -->
-            <h2>Positions</h2>
+            <!-- 5. Experiences 版块 -->
+            <h2>Experiences</h2>
             <div class="cv-item">
-                <div class="cv-date">Sep. 2025 – Ongoing</div>
-                <div class="cv-content">
-                    <h3>Lecturer</h3>
-                    <div class="cv-meta">Nanjing Normal University</div>
-                </div>
+                <div class="cv-date">Aug. 1 - Aug. 4, 2026</div>
+                <div class="cv-content">2026 Workshop on PDEs in Fluid Mechanics, held by Guizhou University and Peking University</div>
+            </div>
+            <div class="cv-item">
+                <div class="cv-date">Apr. 17 - Apr. 20, 2026</div>
+                <div class="cv-content">2026 Southeast University Symposium on New Advances in Nonlinear Partial Differential Equations</div>
+            </div>
+            <div class="cv-item">
+                <div class="cv-date">Oct. 23 - Oct. 26, 2025</div>
+                <div class="cv-content">Twenty-Third Annual Conference of China Society for Industrial and Applied Mathematics, held in Changsha, Hunan</div>
+            </div>
+            <div class="cv-item">
+                <div class="cv-date">Dec. 20 – Dec. 23, 2024</div>
+                <div class="cv-content">Participated in the National Conference on Theory and Application of Partial Differential Equations organized by Guangdong-Hong Kong-Macau Center for Applied Mathematics</div>
+            </div>
+            <div class="cv-item">
+                <div class="cv-date">Oct. 25 – Oct. 27, 2024</div>
+                <div class="cv-content">Invited to give a talk at the 7th National Doctoral Forum on Partial Differential Equations</div>
+            </div>
+            <div class="cv-item">
+                <div class="cv-date">Aug. 23 – Aug. 27, 2024</div>
+                <div class="cv-content">Participated in the International Conference on Nonlinear PDEs organized by Shenzhen International Center for Mathematics</div>
+            </div>
+            <div class="cv-item">
+                <div class="cv-date">Jul. 19, 2024</div>
+                <div class="cv-content">Outstanding Doctoral Dissertation Defense at the 7th National Partial Differential Equation Doctoral Forum</div>
+            </div>
+            <div class="cv-item">
+                <div class="cv-date">Oct. 30 – Nov. 03, 2023</div>
+                <div class="cv-content">Participated in the International Conference on Recent Advances in Nonlinear PDEs and their Applications organized by the Chinese University of Hong Kong</div>
+            </div>
+            <div class="cv-item">
+                <div class="cv-date">Mar. 10, 2023</div>
+                <div class="cv-content">Joined in HKSIAM</div>
             </div>
 
+            <!-- 6. Contact me 版块 -->
+            <h2>Contact me</h2>
             <div class="cv-item">
-                <div class="cv-date">Aug. 2024 – Aug. 2025</div>
-                <div class="cv-content">
-                    <h3>Research Associate</h3>
-                    <div class="cv-meta">Department of Applied Mathematics, The Hong Kong Polytechnic University</div>
-                    <div class="cv-meta"><b>Postdoctoral mentor</b>: Prof. Tong Yang</div>
-                </div>
-            </div>
-
-            <div class="cv-item">
-                <div class="cv-date">Aug. 2022 – Aug. 2024</div>
-                <div class="cv-content">
-                    <h3>Postdoctoral Fellow</h3>
-                    <div class="cv-meta">Department of Mathematics, The Chinese University of Hong Kong</div>
-                    <div class="cv-meta"><b>Postdoctoral mentor</b>: Prof. Chenyun Luo</div>
-                </div>
-            </div>
-
-            <!-- 3. Formation 版块 -->
-            <h2>Formation</h2>
-            <div class="cv-item">
-                <div class="cv-date">Sep. 2018 – Jun. 2022</div>
-                <div class="cv-content">
-                    <h3>Ph.D. in Mathematics</h3>
-                    <div class="cv-meta">The School of Mathematics and Statistics, Wuhan University</div>
-                    <p><strong>Ph.D. Thesis</strong><br>
-                    Title: The well-posedness and hydrodynamic limits of quantum Boltzmann equation with Fermi-Dirac statistics<br>
-                    <b>Advisor</b>: Prof. Ning Jiang</p>
-                </div>
+                <div class="cv-date">Email Address:</div>
+                <div class="cv-content">kzyd@njnu.edu.cn<br>kaizhoucm@whu.edu.cn</div>
             </div>
 
                     </div>
